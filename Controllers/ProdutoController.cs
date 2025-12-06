@@ -1,11 +1,18 @@
 using Microsoft.AspNetCore.Mvc;
+using Services.Produto;
 
 namespace Controllers;
 
 public class ProdutoController : Controller
 {
-    public IActionResult Index()
+    private readonly IProdutoInterface _produtoInterface;
+    public ProdutoController(IProdutoInterface produtoInterface)
     {
-        return View();
+        _produtoInterface = produtoInterface;
+    }
+    public async Task<IActionResult> Index()
+    {
+        var produtos = await _produtoInterface.ListaProdutos();
+        return View(produtos);
     }
 }
