@@ -1,3 +1,4 @@
+using Dto.Produto;
 using Microsoft.AspNetCore.Mvc;
 using Services.Categoria;
 using Services.Produto;
@@ -22,6 +23,12 @@ public class ProdutoController : Controller
     public async Task<IActionResult> Cadastrar()
     {
         ViewBag.Categorias = await _categoriaInterface.BuscarCategorias();
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Cadastrar(ProdutoCriacaoDto produtoCriacaoDto, IFormFile foto)
+    {
         return View();
     }
 }

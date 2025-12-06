@@ -1,4 +1,5 @@
 using Data;
+using Dto.Produto;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using Models;
@@ -24,4 +25,6 @@ public class CategoriaService : ICategoriaInterface
             throw new Exception(ex.Message);
         }
     }
+
+    
 }
