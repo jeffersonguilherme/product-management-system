@@ -1,5 +1,6 @@
 using Data;
 using Microsoft.EntityFrameworkCore;
+using Services.Categoria;
 using Services.Produto;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +14,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 });
 
 builder.Services.AddScoped<IProdutoInterface, ProdutoService>();
+builder.Services.AddScoped<ICategoriaInterface, CategoriaService>();
 
 var app = builder.Build();
 
