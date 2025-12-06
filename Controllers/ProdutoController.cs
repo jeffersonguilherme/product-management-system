@@ -29,6 +29,15 @@ public class ProdutoController : Controller
     [HttpPost]
     public async Task<IActionResult> Cadastrar(ProdutoCriacaoDto produtoCriacaoDto, IFormFile foto)
     {
-        return View();
+        if (ModelState.IsValid)
+        {
+            var produto = await _produtoInterface.Cadastrar(produtoCriacaoDto, foto);
+            return RedirectToAction("Index", "Produto");
+        }
+        else
+        {
+            ViewBag.Categorias = await _categoriaInterface.BuscarCategorias();
+            return View(produtoCriacaoDto);
+        }
     }
 }

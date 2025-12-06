@@ -8,9 +8,8 @@ public class ProdutoCriacaoDto
     public string NomeProduto { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "Digite a Marca!")]
-    public string Marca { get; set; } = string.Empty;
+    public string? Marca { get; set; } = string.Empty;
 
-    [Required(ErrorMessage = "Insira a Foto!")]
     public string Foto { get; set; } = string.Empty;
     
     [Required(ErrorMessage = "Digite o Valor!")]

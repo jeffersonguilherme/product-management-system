@@ -12,32 +12,32 @@
 
         <div class="mb-1">
             <label class="form-label">Nome:</label>
-            <input class="form-control shadow-none" type="text" name="nome" asp-asp-for="Nome">
+            <input class="form-control shadow-none" type="text"asp-for="NomeProduto">
             <span asp-validation-for="NomeProduto"></span>
         </div>
 
         <div class="mb-1">
             <label class="form-label">Marca:</label>
-            <input class="form-control shadow-none" type="text" name="nome" asp-asp-for="Marca">
+            <input class="form-control shadow-none" type="text" asp-for="Marca">
             <span asp-validation-for="Marca"></span>
 
         </div>
 
         <div class="mb-1">
             <label class="form-label">Valor:</label>
-            <input class="form-control shadow-none" type="number" name="nome" min="1" step="any" asp-asp-for="Valor">
+            <input class="form-control shadow-none" type="number" min="1" step="any" asp-for="Valor">
             <span asp-validation-for="Valor"></span>
         </div>
 
         <div class="mb-1">
             <label class="form-label">Quantidade:</label>
-            <input class="form-control shadow-none" type="number" name="nome" min="1" step="any" asp-asp-for="QuantidadeEstoque">
+            <input class="form-control shadow-none" type="number" min="1" step="any" asp-for="QuantidadeEstoque">
             <span asp-validation-for="QuantidadeEstoque"></span>
         </div>
 
         <div class="mb-1">
             <label class="form-label">Categoria:</label>
-            <select asp-asp-for="CategoriaId"
+            <select asp-for="CategoriaId"
                     class="form-select"
                     asp-items="@(new SelectList(ViewBag.Categorias,"Id","NomeCategoria"))"
                     >

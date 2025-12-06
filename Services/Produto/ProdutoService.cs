@@ -1,6 +1,7 @@
 using Data;
 using Dto.Produto;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic.FileIO;
 using Models;
 
 namespace Services.Produto;
@@ -27,12 +28,26 @@ public class ProdutoService : IProdutoInterface
         }
     }
 
-    public Task<ProdutoModel> Cadastrar(ProdutoCriacaoDto produtoCriacaoDto, IFormFile foto)
+    public async Task<ProdutoModel> Cadastrar(ProdutoCriacaoDto produtoCriacaoDto, IFormFile foto)
     {
         try
         {
             
             var nomeCaminhoImagem = GeraCaminhoArquivo(foto);
+            var produto = new ProdutoModel
+            {
+                NomeProduto = produtoCriacaoDto.NomeProduto,
+                Marca = produtoCriacaoDto.Marca,
+                Valor = produtoCriacaoDto.Valor,
+                CategoriaId  = produtoCriacaoDto.CategoriaId,
+                Foto = nomeCaminhoImagem,
+                QuantidadeEstoque = produtoCriacaoDto.QuantidadeEstoque
+            };
+
+             _context.Produtos.Add(produto);
+            await _context.SaveChangesAsync();
+
+            return produto;
 
         }catch(Exception ex)
         {
@@ -43,9 +58,10 @@ public class ProdutoService : IProdutoInterface
     private string GeraCaminhoArquivo(IFormFile foto)
     {
         var codigoUnico = Guid.NewGuid().ToString();
-        var nomeCaminhoImagem = foto.FileName.Replace(" ", "").ToLower() + codigoUnico + ".png"; //recupera o nome, remove os espaco e deixa tudo lowecase
+        var nomeCaminhoImagem = foto.FileName.Replace(" ", "").ToLower() + codigoUnico + Path.GetExtension(foto.FileName); //recupera o nome, remove os espaco e deixa tudo lowecase
 
-        var caminhoParaSalvarImagens = _sistema + "\\imagem\\";
+       // var caminhoParaSalvarImagens = _sistema + "\\imagem\\";
+       var caminhoParaSalvarImagens = Path.Combine(_sistema, "imagem");
 
         if (!Directory.Exists(caminhoParaSalvarImagens))//Verifica se existe a pasta imagens
         {
