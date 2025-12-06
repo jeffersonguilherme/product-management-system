@@ -1,4 +1,5 @@
-
+@using Dto.Produto
+@model ProdutoCriacaoDto
 
 <div class="container mt-5">
     <form>
@@ -11,30 +12,37 @@
 
         <div class="mb-1">
             <label class="form-label">Nome:</label>
-            <input class="form-control shadow-none" type="text" name="nome">
+            <input class="form-control shadow-none" type="text" name="nome" asp-asp-for="Nome">
+            <span asp-validation-for="NomeProduto"></span>
         </div>
 
         <div class="mb-1">
             <label class="form-label">Marca:</label>
-            <input class="form-control shadow-none" type="text" name="nome">
+            <input class="form-control shadow-none" type="text" name="nome" asp-asp-for="Marca">
+            <span asp-validation-for="Marca"></span>
+
         </div>
 
         <div class="mb-1">
             <label class="form-label">Valor:</label>
-            <input class="form-control shadow-none" type="number" name="nome" min="1" step="any">
+            <input class="form-control shadow-none" type="number" name="nome" min="1" step="any" asp-asp-for="Valor">
+            <span asp-validation-for="Valor"></span>
         </div>
 
         <div class="mb-1">
             <label class="form-label">Quantidade:</label>
-            <input class="form-control shadow-none" type="number" name="nome" min="1" step="any">
+            <input class="form-control shadow-none" type="number" name="nome" min="1" step="any" asp-asp-for="QuantidadeEstoque">
+            <span asp-validation-for="QuantidadeEstoque"></span>
         </div>
 
         <div class="mb-1">
-            <label class="form-label">Valor:</label>
-            <select class="form-select"
+            <label class="form-label">Categoria:</label>
+            <select asp-asp-for="CategoriaId"
+                    class="form-select"
                     asp-items="@(new SelectList(ViewBag.Categorias,"Id","NomeCategoria"))"
                     >
             </select>
+            <span asp-validation-for="CategoriaId"></span>
         </div>
         
         <div class="d-flex mt-3">
