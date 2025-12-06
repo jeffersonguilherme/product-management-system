@@ -24,7 +24,7 @@
                 @foreach(var produto in Model){
                     <tr>
                         @if(produto.Foto != null){
-                            <td><img src="..." alt=""></td>
+                            <td><img src="~/imagem/@produto.Foto"/></td>
                         }else{
                             <td></td>
                         }

@@ -58,17 +58,21 @@ public class ProdutoService : IProdutoInterface
     private string GeraCaminhoArquivo(IFormFile foto)
     {
         var codigoUnico = Guid.NewGuid().ToString();
-        var nomeCaminhoImagem = foto.FileName.Replace(" ", "").ToLower() + codigoUnico + Path.GetExtension(foto.FileName); //recupera o nome, remove os espaco e deixa tudo lowecase
+        var extensao = Path.GetExtension(foto.FileName);
+        var nomeSemExt = Path.GetFileNameWithoutExtension(foto.FileName)
+                         .Replace(" ", "")
+                         .ToLower();
 
-       // var caminhoParaSalvarImagens = _sistema + "\\imagem\\";
-       var caminhoParaSalvarImagens = Path.Combine(_sistema, "imagem");
+        var nomeCaminhoImagem = $"{nomeSemExt}_{codigoUnico}{extensao}";
 
-        if (!Directory.Exists(caminhoParaSalvarImagens))//Verifica se existe a pasta imagens
-        {
-            Directory.CreateDirectory(caminhoParaSalvarImagens); // Cria a pasta imagens 
-        }
+        var caminhoParaSalvar = Path.Combine(_sistema, "imagem");
 
-        using (var stream = File.Create(caminhoParaSalvarImagens + nomeCaminhoImagem))
+        if (!Directory.Exists(caminhoParaSalvar))
+            Directory.CreateDirectory(caminhoParaSalvar);
+
+        var caminhoCompleto = Path.Combine(caminhoParaSalvar, nomeCaminhoImagem);
+
+        using (var stream = File.Create(caminhoCompleto))
         {
             foto.CopyToAsync(stream).Wait();
         }
