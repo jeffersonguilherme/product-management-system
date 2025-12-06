@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "C:\\Users\\Jefferson\\Documents\\GitHub\\product-management-system\\wwwroot\\css\\yeti.css",
+      "PackagePath": "staticwebassets\\css\\yeti.css"
+    },
+    {
       "Id": "C:\\Users\\Jefferson\\Documents\\GitHub\\product-management-system\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },

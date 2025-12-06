@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "PRJmJX19+NWcYcEp3hxCiH17EzFl9ThjI8z2a6ubQR4=",
+  "Hash": "Czr5IehDibcSibBgWyr9hBe9b9yBIUwgUIDG1PbNIR8=",
   "Source": "product-management-system",
   "BasePath": "_content/product-management-system",
   "Mode": "Default",
@@ -72,6 +72,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Users\\Jefferson\\Documents\\GitHub\\product-management-system\\wwwroot\\css\\yeti.css",
+      "SourceId": "product-management-system",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Jefferson\\Documents\\GitHub\\product-management-system\\wwwroot\\",
+      "BasePath": "_content/product-management-system",
+      "RelativePath": "css/yeti.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\yeti.css"
     },
     {
       "Identity": "C:\\Users\\Jefferson\\Documents\\GitHub\\product-management-system\\wwwroot\\favicon.ico",
