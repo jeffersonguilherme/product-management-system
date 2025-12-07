@@ -1,47 +1,78 @@
-# 📄 README do Projeto (Em Desenvolvimento) 🚧
+# 📦 Gerenciamento de Produtos ASP.NET Core MVC
 
-Com base nos commits fornecidos, este é um resumo da estrutura atual do projeto.
-## 💻 Visão Geral do Projeto
+Este projeto é um sistema básico de **Gerenciamento de Produtos** desenvolvido em **ASP.NET Core MVC**. Ele permite o **Cadastro**, **Listagem** e **Edição** de produtos, incluindo a gestão de categorias e o upload de imagens para os produtos.
 
-Este projeto é uma aplicação web desenvolvida utilizando o framework **ASP.NET Core MVC**. O objetivo principal é criar um sistema completo de gestão e exibição de produtos, seguindo as melhores práticas de arquitetura, como o padrão **Repository/Service**, para garantir a manutenibilidade e escalabilidade do código.
+## 🚀 Tecnologias Utilizadas
 
-## ⚙️ Tecnologias Principais
+* **ASP.NET Core MVC:** Estrutura principal da aplicação.
+* **Entity Framework Core:** ORM utilizado para interagir com o banco de dados.
+* **Padrão Repository/Service:** Separação das preocupações (lógica de negócios e acesso a dados).
+* **Bootstrap/Razor:** Utilizados para o *front-end* (visto nos arquivos `.cshtml`).
 
-*   **Linguagem:** C#
-*   **Framework:** ASP.NET Core (versão 8.0.0, baseada nos commits)
-*   **Padrão:** MVC (Model-View-Controller)
-*   **Persistência:** Entity Framework Core (EF Core)
-*   **Banco de Dados:** SQL Server
-*   **Estilização:** Bootstrap
+## ⚙️ Estrutura do Projeto (Análise do Código)
 
-*   ## 🛠️ Status Atual e Funcionalidades Implementadas
+O código está estruturado em diferentes componentes:
 
-A arquitetura do projeto está robusta e a funcionalidade CRUD (Criação, Leitura, Atualização e Exclusão) para a entidade **Produto** está em fase avançada.
+### 1. Camada de Controle (Controller)
 
-### ✅ Camadas e Arquitetura
+O arquivo `ProdutoController.cs` (na *namespace* `Controllers`) gerencia as requisições HTTP relacionadas a produtos:
 
-*   **Estrutura Inicial:** Configuração do projeto MVC, Web API (inicial) e instalação dos pacotes EF Core.
-*   **Persistência:** `DataContext` configurado, `DbSets` registrados e migrações iniciais aplicadas (`migrations` e `database update`).
-*   **Padrão Repository/Service:** Implementação da camada de serviço (`IProdutoInterface`, `ProdutoService`, `ICategoriaInterface`, `CategoriaService`) para isolar a lógica de negócios e acesso a dados.
-*   **Injeção de Dependência (DI):** Serviços devidamente registrados no `Program.cs`.
+*   **Injeção de Dependência:** Utiliza injeção dos serviços `IProdutoInterface` e `ICategoriaInterface`.
+*   **Listagem (`Index` - GET):** Retorna a *View* com a lista de produtos, buscando-os através de `ListaProdutos()`.
+*   **Cadastro (GET e POST):**
+    *   O método GET (`Cadastrar`) retorna a *View* de cadastro, carregando a lista de categorias para o `ViewBag`.
+    *   O método POST (`Cadastrar` com `[HttpPost]`) recebe um `ProdutoCriacaoDto` e um `IFormFile` (foto), valida o modelo, cadastra o produto e redireciona para a listagem.
+*   **Edição (GET e POST):**
+    *   O método GET (`Editar`) busca o produto pelo `Id`, mapeia para um `EditarProdutoDto`, carrega as categorias para o `ViewBag` e retorna a *View*.
+    *   O método POST (`Editar` com `[HttpPost]`) recebe o `EditarProdutoDto` e o `IFormFile` (foto opcional), valida o modelo, edita o produto (incluindo a exclusão da foto antiga, se uma nova for fornecida) e redireciona.
 
-### 📦 Funcionalidades de Produto/Categoria
+### 2. Camada de Serviços (Services)
 
-| Funcionalidade | Status | Detalhes |
-| :--- | :--- | :--- |
-| **Listagem de Produtos** | ✅ Completa | Implementação do método `ListaProdutos()`, `ProdutoController.Index` e View `Index.cshtml` com estilos Bootstrap. |
-| **Criação (Cadastro)** | ✅ Completa | Implementação do DTO (`ProdutoCriacaoDto`), validações, `[HttpGet]` e `[HttpPost]` no Controller, e método de persistência no Service. |
-| **Upload de Imagem** | ✅ Completa | Lógica de `GeraCaminhoArquivo` no Service para salvar imagens de forma única no `wwwroot`, incluindo a correção do path de salvamento. |
-| **Edição (Atualização)** | ✅ Completa | Implementação do DTO (`EditarProdutoDto`), métodos `[HttpGet]` e `[HttpPost]` e lógica de substituição de imagem antiga no Service. |
-| **Listagem de Categorias** | ✅ Em Serviço | Implementação do `ICategoriaInterface` e `CategoriaService`. `BuscarCategorias()` disponível para uso em dropdowns (`ViewBag`). |
+Implementa a lógica de negócios e orquestra as operações de dados.
 
----
+*   **`IProdutoInterface` e `ProdutoService.cs`:**
+    *   `ListaProdutos()`: Retorna todos os produtos, incluindo a categoria associada (`.Include(c => c.Categoria)`).
+    *   `Cadastrar()`: Cria um novo `ProdutoModel` a partir do DTO, salva a imagem no sistema de arquivos (`GeraCaminhoArquivo`), adiciona ao banco de dados e salva as mudanças.
+    *   `Editar()`: Busca o produto, atualiza suas propriedades com base no DTO. Se uma nova foto for enviada, a foto antiga é excluída do sistema de arquivos e a nova é salva e associada ao produto.
+    *   **Gestão de Imagens:** O método privado `GeraCaminhoArquivo` gera um nome de arquivo único, salva o arquivo no diretório `wwwroot/imagem` e retorna o nome do arquivo para ser armazenado no banco de dados.
+*   **`ICategoriaInterface` e `CategoriaService.cs`:**
+    *   `BuscarCategorias()`: Retorna uma lista de todas as categorias.
 
-## 💡 Próximas Implementações (To Do)
+### 3. Camada de Dados (Data, DTOs e Models)
 
-As seguintes funcionalidades estão planejadas para o desenvolvimento futuro:
+*   **`DataContext.cs` (Entity Framework Core):**
+    *   Define o contexto do banco de dados com `DbSet` para `Produtos` e `Categorias`.
+*   **Models:**
+    *   `ProdutoModel`: Modelo de dados para produtos, com propriedades como `NomeProduto`, `Marca`, `Valor`, `QuantidadeEstoque`, `Foto` e `CategoriaId`. Inclui uma propriedade de navegação (`Categoria`).
+    *   `CategoriaModel`: Modelo de dados simples para categorias.
+*   **DTOs (Data Transfer Objects):**
+    *   `ProdutoCriacaoDto`: Utilizado para o cadastro de novos produtos. Possui **DataAnnotations** para validação básica (`[Required]`).
+    *   `EditarProdutoDto`: Herda de `ProdutoCriacaoDto` e adiciona a propriedade `Id` (necessária para a edição).
 
-*   **🔒 Autenticação e Autorização:** Implementar o login de usuário (e possivelmente registro).
-*   **🖼️ Experiência do Usuário:** Criar uma página com cards para cada produto para uma melhor visualização na interface do usuário (substituindo ou complementando a lista em tabela).
-*   **🗑️ Exclusão de Produtos:** Implementar o método de excluir produtos (`[HttpGet]` e `[HttpPost]` para confirmação).
-*   **🔍 Funcionalidade de Busca:** Adicionar método de buscar por nome ou categoria na tela de listagem de produtos.
+4. Views (Razor - Front-end)
+Index.cshtml: Exibe a lista de produtos em uma tabela (incluindo a imagem e a categoria). Contém links para Cadastrar e Editar.
+
+Cadastrar.cshtml: Formulário para criar um novo produto. Utiliza Tag Helpers do ASP.NET Core e um dropdown para selecionar a categoria (alimentado pelo ViewBag.Categorias). Permite o upload de arquivo (enctype="multipart/form-data").
+
+Editar.cshtml: Formulário para editar um produto existente. Carrega os dados atuais do produto e permite atualizar os campos, incluindo a substituição da foto.
+
+🔑 Configuração e Uso
+Configuração do Banco de Dados: É necessário configurar a connection string no appsettings.json e garantir que o DataContext esteja registrado no container de serviços (geralmente em Program.cs).
+
+Migrações: Execute as migrações do Entity Framework Core para criar o schema do banco de dados.
+
+Registro de Serviços: Os serviços (ProdutoService e CategoriaService) e suas interfaces devem ser registrados no container de serviços (Program.cs).
+
+Estrutura de Arquivos: Certifique-se de que a aplicação tenha acesso a um diretório wwwroot para o salvamento de imagens. O ProdutoService salva as imagens no subdiretório wwwroot/imagem.
+
+📌 Próximos Passos Sugeridos
+Implementar a funcionalidade de Remoção de produtos (método Remove na Index.cshtml e lógica no Controller e Service).
+
+Implementar a funcionalidade de CRUD para Categorias.
+
+Adicionar validações de front-end e tratamento de erros mais robusto nas operações de serviço.
+
+Melhorar a gestão de imagens, talvez utilizando um serviço de storage em produção.
+
+<img width="1226" height="912" alt="image" src="https://github.com/user-attachments/assets/e6229ae8-c2be-4f3b-8ecf-5781850fe197" />
+
