@@ -76,3 +76,9 @@ Melhorar a gestão de imagens, talvez utilizando um serviço de storage em produ
 
 <img width="1226" height="912" alt="image" src="https://github.com/user-attachments/assets/e6229ae8-c2be-4f3b-8ecf-5781850fe197" />
 
+<img width="1217" height="695" alt="image" src="https://github.com/user-attachments/assets/8ab87c91-9dd3-4bdd-a1d5-49b56b7616ce" />
+
+<img width="1245" height="682" alt="image" src="https://github.com/user-attachments/assets/461c15fe-5dc8-4185-b57b-4f9bc7f53127" />
+
+
+
