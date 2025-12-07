@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "3W0js+I+tzI8jsFWS/qZR1zYEbxa9jO0//pszAlrxyo=",
+  "Hash": "QMimid8wO+cq2ezlfxU8bq6ZSB5M8ZPfaXVUnAYCl4Q=",
   "Source": "product-management-system",
   "BasePath": "_content/product-management-system",
   "Mode": "Default",
@@ -110,6 +110,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Jefferson\\Documents\\GitHub\\product-management-system\\wwwroot\\imagem\\500733315-1209413b-681a-4806-9838-1cecc878050e_7c22c299-b590-4872-879b-6eb3c516e959.png",
+      "SourceId": "product-management-system",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Jefferson\\Documents\\GitHub\\product-management-system\\wwwroot\\",
+      "BasePath": "_content/product-management-system",
+      "RelativePath": "imagem/500733315-1209413b-681a-4806-9838-1cecc878050e_7c22c299-b590-4872-879b-6eb3c516e959.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\imagem\\500733315-1209413b-681a-4806-9838-1cecc878050e_7c22c299-b590-4872-879b-6eb3c516e959.png"
     },
     {
       "Identity": "C:\\Users\\Jefferson\\Documents\\GitHub\\product-management-system\\wwwroot\\imagemwhatsappimage2025-10-14at20.05.32.jpegcfec8c9a-aaa5-4834-b892-645cf6b00ab3.jpeg",

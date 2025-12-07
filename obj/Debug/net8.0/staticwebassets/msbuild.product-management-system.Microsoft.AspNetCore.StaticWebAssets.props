@@ -48,6 +48,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\favicon.ico))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\imagem\500733315-1209413b-681a-4806-9838-1cecc878050e_7c22c299-b590-4872-879b-6eb3c516e959.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>product-management-system</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/product-management-system</BasePath>
+      <RelativePath>imagem/500733315-1209413b-681a-4806-9838-1cecc878050e_7c22c299-b590-4872-879b-6eb3c516e959.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\imagem\500733315-1209413b-681a-4806-9838-1cecc878050e_7c22c299-b590-4872-879b-6eb3c516e959.png))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\imagemwhatsappimage2025-10-14at20.05.32.jpegcfec8c9a-aaa5-4834-b892-645cf6b00ab3.jpeg))">
       <SourceType>Package</SourceType>
       <SourceId>product-management-system</SourceId>

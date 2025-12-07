@@ -14,18 +14,40 @@ public class ProdutoController : Controller
         _produtoInterface = produtoInterface;
         _categoriaInterface = categoriaInterface;
     }
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index() //retorna apenas a view a pagina com a lista de produtos
     {
         var produtos = await _produtoInterface.ListaProdutos();
         return View(produtos);
     }
 
-    public async Task<IActionResult> Cadastrar()
+    public async Task<IActionResult> Cadastrar()//retorna apenas a view a pagina de cadastros
     {
         ViewBag.Categorias = await _categoriaInterface.BuscarCategorias();
         return View();
     }
 
+    public async Task<IActionResult> Editar(Guid id)
+    {
+        var produto = await _produtoInterface.BuscarProdutoPorId(id);
+
+        var editarProdutoDto = new EditarProdutoDto
+        {
+            NomeProduto = produto.NomeProduto,
+            Marca = produto.Marca,
+            Foto = produto.Foto,
+            Valor = produto.Valor,
+            QuantidadeEstoque = produto.QuantidadeEstoque,
+            CategoriaId = produto.CategoriaId
+        };
+        
+        ViewBag.Categorias = await _categoriaInterface.BuscarCategorias();
+        return View(editarProdutoDto);
+    }
+
+
+
+
+//-------------------------------------------------------
     [HttpPost]
     public async Task<IActionResult> Cadastrar(ProdutoCriacaoDto produtoCriacaoDto, IFormFile foto)
     {

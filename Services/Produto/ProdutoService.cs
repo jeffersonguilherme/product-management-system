@@ -78,4 +78,19 @@ public class ProdutoService : IProdutoInterface
         }
         return nomeCaminhoImagem;
     }
+
+    public async Task<ProdutoModel> BuscarProdutoPorId(Guid id)
+    {
+        try
+        {
+            var produto = await _context.Produtos
+                                        .Include(x=> x.Categoria)
+                                        .FirstOrDefaultAsync(p=> p.Id == id);
+
+            return produto;
+        }catch(Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
 }
