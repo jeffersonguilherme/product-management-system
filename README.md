@@ -1,109 +1,47 @@
-📄 README do Projeto (Em Desenvolvimento) 🚧
-💻 Visão Geral do Projeto
+# 📄 README do Projeto (Em Desenvolvimento) 🚧
 
-Este projeto é uma aplicação web desenvolvida utilizando o framework ASP.NET Core MVC.
-O objetivo principal é criar um sistema completo de gestão e exibição de produtos, seguindo boas práticas de arquitetura como o padrão Repository/Service, garantindo manutenibilidade, organização e escalabilidade.
+Com base nos commits fornecidos, este é um resumo da estrutura atual do projeto.
+## 💻 Visão Geral do Projeto
 
-⚙️ Tecnologias Principais
+Este projeto é uma aplicação web desenvolvida utilizando o framework **ASP.NET Core MVC**. O objetivo principal é criar um sistema completo de gestão e exibição de produtos, seguindo as melhores práticas de arquitetura, como o padrão **Repository/Service**, para garantir a manutenibilidade e escalabilidade do código.
 
-Linguagem: C#
+## ⚙️ Tecnologias Principais
 
-Framework: ASP.NET Core 8.0
+*   **Linguagem:** C#
+*   **Framework:** ASP.NET Core (versão 8.0.0, baseada nos commits)
+*   **Padrão:** MVC (Model-View-Controller)
+*   **Persistência:** Entity Framework Core (EF Core)
+*   **Banco de Dados:** SQL Server
+*   **Estilização:** Bootstrap
 
-Padrão Arquitetural: MVC (Model-View-Controller)
+*   ## 🛠️ Status Atual e Funcionalidades Implementadas
 
-Persistência: Entity Framework Core (EF Core)
+A arquitetura do projeto está robusta e a funcionalidade CRUD (Criação, Leitura, Atualização e Exclusão) para a entidade **Produto** está em fase avançada.
 
-Banco de Dados: SQL Server
+### ✅ Camadas e Arquitetura
 
-Estilização: Bootstrap
+*   **Estrutura Inicial:** Configuração do projeto MVC, Web API (inicial) e instalação dos pacotes EF Core.
+*   **Persistência:** `DataContext` configurado, `DbSets` registrados e migrações iniciais aplicadas (`migrations` e `database update`).
+*   **Padrão Repository/Service:** Implementação da camada de serviço (`IProdutoInterface`, `ProdutoService`, `ICategoriaInterface`, `CategoriaService`) para isolar a lógica de negócios e acesso a dados.
+*   **Injeção de Dependência (DI):** Serviços devidamente registrados no `Program.cs`.
 
-🛠️ Status Atual e Funcionalidades Implementadas
+### 📦 Funcionalidades de Produto/Categoria
 
-A arquitetura do projeto está bem estruturada e a funcionalidade CRUD para a entidade Produto está em fase avançada.
+| Funcionalidade | Status | Detalhes |
+| :--- | :--- | :--- |
+| **Listagem de Produtos** | ✅ Completa | Implementação do método `ListaProdutos()`, `ProdutoController.Index` e View `Index.cshtml` com estilos Bootstrap. |
+| **Criação (Cadastro)** | ✅ Completa | Implementação do DTO (`ProdutoCriacaoDto`), validações, `[HttpGet]` e `[HttpPost]` no Controller, e método de persistência no Service. |
+| **Upload de Imagem** | ✅ Completa | Lógica de `GeraCaminhoArquivo` no Service para salvar imagens de forma única no `wwwroot`, incluindo a correção do path de salvamento. |
+| **Edição (Atualização)** | ✅ Completa | Implementação do DTO (`EditarProdutoDto`), métodos `[HttpGet]` e `[HttpPost]` e lógica de substituição de imagem antiga no Service. |
+| **Listagem de Categorias** | ✅ Em Serviço | Implementação do `ICategoriaInterface` e `CategoriaService`. `BuscarCategorias()` disponível para uso em dropdowns (`ViewBag`). |
 
-✅ Camadas e Arquitetura
+---
 
-Estrutura Inicial
+## 💡 Próximas Implementações (To Do)
 
-Configuração do projeto MVC
+As seguintes funcionalidades estão planejadas para o desenvolvimento futuro:
 
-Web API (estrutura inicial)
-
-Instalação e configuração dos pacotes EF Core
-
-Persistência
-
-DataContext configurado
-
-DbSet das entidades registrados
-
-Migrações criadas e aplicadas (migrations + database update)
-
-Padrão Repository/Service
-
-Implementação da camada de serviço:
-
-IProdutoInterface, ProdutoService
-
-ICategoriaInterface, CategoriaService
-
-Lógica de negócios isolada da camada de apresentação
-
-Injeção de Dependência (DI)
-
-Interfaces e serviços devidamente registrados no Program.cs
-
-📦 Funcionalidades de Produto e Categoria
-Funcionalidade	Status	Detalhes
-Listagem de Produtos	✅ Completa	Método ListaProdutos(), ProdutoController.Index, View Index.cshtml utilizando Bootstrap
-Criação (Cadastro)	✅ Completa	DTO ProdutoCriacaoDto, validações, métodos [HttpGet] e [HttpPost], persistência no Service
-Upload de Imagem	✅ Completa	Lógica GeraCaminhoArquivo salva imagens no wwwroot com nomes únicos
-Edição (Atualização)	✅ Completa	DTO EditarProdutoDto, métodos [HttpGet] e [HttpPost], substituição da imagem antiga
-Listagem de Categorias	⚠️ Em Serviço	ICategoriaInterface e CategoriaService implementados; BuscarCategorias() disponível para dropdowns
-💡 Próximas Implementações (To Do)
-
-🔒 Autenticação e Autorização
-Implementar login de usuário e, futuramente, sistema de registro.
-
-🖼️ Melhoria de UI/UX
-Criar página com cards de produtos para uma visualização mais moderna e agradável.
-
-🗑️ Exclusão de Produtos
-Implementar remoção com confirmação: métodos [HttpGet] e [HttpPost].
-
-🔍 Funcionalidade de Busca
-Filtro de produtos por nome e/ou categoria na tela de listagem.
-
-📂 Estrutura Geral do Projeto (Simplificada)
-Projeto/
-│── Controllers/
-│   ├── ProdutoController.cs
-│   └── CategoriaController.cs
-│
-│── Data/
-│   └── DataContext.cs
-│
-│── Models/
-│   ├── Produto.cs
-│   └── Categoria.cs
-│
-│── Services/
-│   ├── Interfaces/
-│   │   ├── IProdutoInterface.cs
-│   │   └── ICategoriaInterface.cs
-│   ├── ProdutoService.cs
-│   └── CategoriaService.cs
-│
-│── Views/
-│   ├── Produto/
-│   └── Categoria/
-│
-│── wwwroot/
-│   └── imagens/
-│
-└── Program.cs
-
-📌 Observação
-
-Este projeto ainda está em desenvolvimento e novas funcionalidades serão adicionadas conforme os commits forem evoluindo.
+*   **🔒 Autenticação e Autorização:** Implementar o login de usuário (e possivelmente registro).
+*   **🖼️ Experiência do Usuário:** Criar uma página com cards para cada produto para uma melhor visualização na interface do usuário (substituindo ou complementando a lista em tabela).
+*   **🗑️ Exclusão de Produtos:** Implementar o método de excluir produtos (`[HttpGet]` e `[HttpPost]` para confirmação).
+*   **🔍 Funcionalidade de Busca:** Adicionar método de buscar por nome ou categoria na tela de listagem de produtos.
