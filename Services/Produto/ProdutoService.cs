@@ -1,7 +1,6 @@
 using Data;
 using Dto.Produto;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic.FileIO;
 using Models;
 
 namespace Services.Produto;
@@ -87,6 +86,42 @@ public class ProdutoService : IProdutoInterface
                                         .Include(x=> x.Categoria)
                                         .FirstOrDefaultAsync(p=> p.Id == id);
 
+            return produto;
+        }catch(Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public async Task<ProdutoModel> Editar(EditarProdutoDto editarProdutoDto, IFormFile? foto)
+    {
+        try
+        {
+            var produto = await BuscarProdutoPorId(editarProdutoDto.Id);
+
+            var nomeCaminhoImagem = "";
+            if(foto != null)
+            {
+                string caminhoCapaExistente = Path.Combine(_sistema, "imagem", produto.Foto);
+                if (File.Exists(caminhoCapaExistente))
+                {
+                    File.Delete(caminhoCapaExistente);
+                }
+                nomeCaminhoImagem = GeraCaminhoArquivo(foto);
+            }
+
+            produto.NomeProduto = editarProdutoDto.NomeProduto;
+            produto.Marca = editarProdutoDto.Marca;
+            produto.Valor = editarProdutoDto.Valor;
+            produto.QuantidadeEstoque = editarProdutoDto.QuantidadeEstoque;
+            produto.CategoriaId = editarProdutoDto.CategoriaId;
+            if(nomeCaminhoImagem != "")
+            {
+                produto.Foto = nomeCaminhoImagem;
+            }
+
+            _context.Update(produto);
+            await _context.SaveChangesAsync();
             return produto;
         }catch(Exception ex)
         {

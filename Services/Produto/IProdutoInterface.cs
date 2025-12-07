@@ -9,5 +9,6 @@ public interface IProdutoInterface
     Task<List<ProdutoModel>> ListaProdutos();
     Task<ProdutoModel> Cadastrar(ProdutoCriacaoDto produtoCriacaoDto, IFormFile foto);
     Task<ProdutoModel> BuscarProdutoPorId(Guid id);
+    Task<ProdutoModel> Editar(EditarProdutoDto editarProdutoDto, IFormFile? foto);
 
 }
