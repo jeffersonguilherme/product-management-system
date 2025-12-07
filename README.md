@@ -40,6 +40,9 @@ Implementa a lógica de negócios e orquestra as operações de dados.
 
 ### 3. Camada de Dados (Data, DTOs e Models)
 
+<img width="394" height="208" alt="image" src="https://github.com/user-attachments/assets/a5162541-c630-4075-915e-6f703bef08c0" />
+
+
 *   **`DataContext.cs` (Entity Framework Core):**
     *   Define o contexto do banco de dados com `DbSet` para `Produtos` e `Categorias`.
 *   **Models:**
