@@ -60,10 +60,12 @@ public class ProdutoController : Controller
         if (ModelState.IsValid)
         {
             var produto = await _produtoInterface.Cadastrar(produtoCriacaoDto, foto);
+            TempData["MensagemSucesso"] = "Produto cadastrardo com sucesso!"; 
             return RedirectToAction("Index", "Produto");
         }
         else
         {
+            TempData["MensagemErro"] = "Erro ao cadastrar o produto.";
             ViewBag.Categorias = await _categoriaInterface.BuscarCategorias();
             return View(produtoCriacaoDto);
         }
@@ -75,11 +77,13 @@ public class ProdutoController : Controller
         if (ModelState.IsValid)
         {
             var produto = await _produtoInterface.Editar(editarProdutoDto, foto);
+            TempData["MensagemSucesso"] = "Produto Editado com sucesso!"; 
             return RedirectToAction("Index", "Produto");
         }
         else
         {
             ViewBag.Categorias = await _categoriaInterface.BuscarCategorias();
+            TempData["MensagemErro"] = "Erro ao Editar o produto.";
             return View(editarProdutoDto);
         }
     }
