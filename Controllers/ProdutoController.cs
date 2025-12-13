@@ -28,7 +28,7 @@ public class ProdutoController : Controller
 
     public async Task<IActionResult> Remover(Guid id)
     {
-        
+        var produto = await _produtoInterface.Remover(id);
         return RedirectToAction("Index", "Produto");
     }
 
