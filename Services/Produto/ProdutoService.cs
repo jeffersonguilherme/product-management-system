@@ -128,4 +128,19 @@ public class ProdutoService : IProdutoInterface
             throw new Exception(ex.Message);
         }
     }
+
+    public async Task<ProdutoModel> Remover(Guid id)
+    {
+        try
+        {
+            var produto = await BuscarProdutoPorId(id);
+            _context.Remove(produto);
+            await _context.SaveChangesAsync();
+
+            return produto;
+        }catch(Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
 }

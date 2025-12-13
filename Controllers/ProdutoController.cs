@@ -26,6 +26,12 @@ public class ProdutoController : Controller
         return View();
     }
 
+    public async Task<IActionResult> Remover(Guid id)
+    {
+        
+        return RedirectToAction("Index", "Produto");
+    }
+
     public async Task<IActionResult> Editar(Guid id)
     {
         var produto = await _produtoInterface.BuscarProdutoPorId(id);

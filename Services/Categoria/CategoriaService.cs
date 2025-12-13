@@ -1,6 +1,4 @@
 using Data;
-using Dto.Produto;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using Models;
 

@@ -1,4 +1,3 @@
-using Dto.Produto;
 using Models;
 
 namespace Services.Categoria;
